@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI对话平台</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/chat.css">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <div class="moon-logo">
+                    <div class="moon"></div>
+                    <div class="stars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/" class="active">首页</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                    <li><a href="/help">帮助中心</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 聊天界面 -->
+    <section class="chat-section">
+        <div class="chat-container">
+            <div class="chat-wrapper">
+                <!-- 主聊天区域 -->
+                <div class="chat-main-wrapper">
+                    <div class="chat-header">
+                        <div class="chat-controls">
+                            <button class="control-btn active">新对话</button>
+                            <button class="control-btn">历史记录</button>
+                            <div class="divider"></div>
+                            <select class="language-select">
+                                <option value="zh">中文</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="chat-main">
+                        <div class="chat-messages">
+                            <div class="message ai">
+                                <div class="avatar">AI</div>
+                                <div class="message-content">
+                                    <p>你好！我是你的AI助手，有什么我可以帮你的吗？</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chat-input-area">
+                            <div class="utility-buttons">
+                                <button class="emoji-btn">😊</button>
+                                <button class="upload-btn">📎</button>
+                            </div>
+                            <div class="input-wrapper">
+                                <textarea id="chatInput" placeholder="输入您的问题..." rows="1"></textarea>
+                                <button class="send-btn">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 历史记录区域 -->
+                <div class="history-wrapper">
+                    <div class="history-header">
+                        <button class="back-btn">返回</button>
+                        <h3>历史记录</h3>
+                    </div>
+                    <div class="history-content">
+                        <div class="no-history">暂时没有历史记录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI对话平台</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/api.js"></script>
+    <script src="scripts/chat.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new ChatManager();
+        });
+    </script>
+</body>
+</html> 

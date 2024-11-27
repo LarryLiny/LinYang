@@ -1,0 +1,200 @@
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #2C3E50;
+    --background-color: #F5F6FA;
+    --text-color: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 头部样式 */
+.main-header {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    gap: 40px;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+    background: var(--background-color);
+}
+
+.main-nav a.active {
+    color: var(--primary-color);
+    background: var(--background-color);
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* 主展示区样式 */
+.hero {
+    padding: 120px 0 80px;
+    background: var(--background-color);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 32px;
+    }
+} 
+
+.chat-section {
+    padding-top: 80px; /* 为固定的header留出空间 */
+    min-height: calc(100vh - 80px);
+    background: var(--background-color);
+}
+
+/* 添加打字动画样式 */
+.typing .message-content p {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.typing .message-content p::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: currentColor;
+    border-radius: 50%;
+    animation: typing 1s infinite;
+}
+
+@keyframes typing {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+} 
+
+/* Logo样式 */
+.moon-logo {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.moon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.moon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 28px;
+    height: 28px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(4px, -4px);
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.stars span {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite;
+}
+
+.stars span:nth-child(1) {
+    top: 0;
+    left: 0;
+    animation-delay: 0s;
+}
+
+.stars span:nth-child(2) {
+    top: 50%;
+    right: 0;
+    animation-delay: 0.5s;
+}
+
+.stars span:nth-child(3) {
+    bottom: 0;
+    left: 30%;
+    animation-delay: 1s;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+} 

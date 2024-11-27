@@ -1,0 +1,399 @@
+/* 聊天页面布局 */
+.chat-section {
+    padding-top: 80px;
+    min-height: calc(100vh - 80px);
+    background: white;
+}
+
+.chat-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.chat-wrapper {
+    display: flex;
+    width: 200%;  /* 总宽度为两个屏幕 */
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.chat-main-wrapper {
+    width: 50%;  /* 占总宽度的一半 */
+    min-width: 50%;
+    height: 100%;
+}
+
+/* 头部控制栏样式 */
+.chat-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.chat-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.control-btn {
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: #f5f5f5;
+}
+
+.control-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background: #eee;
+    margin: 0 8px;
+}
+
+.language-select {
+    padding: 6px 12px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+/* 主聊天区域 */
+.chat-main {
+    position: relative;
+    height: calc(100vh - 180px); /* 调整高度，减少头部占用的空间 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 消息区域 */
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px;
+    padding-bottom: 140px; /* 增加底部内边距，为输入框留出更多空间 */
+    scroll-behavior: smooth;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    animation: messageAppear 0.3s ease; /* 添加消息出现动画 */
+}
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+.message .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+    margin: 0 12px;
+}
+
+.message.user .avatar {
+    background: var(--secondary-color);
+}
+
+.message-content {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.message.user .message-content {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* 添加小三角 */
+.message-content::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+}
+
+.message.ai .message-content::before {
+    left: -16px;
+    border-right-color: white;
+}
+
+.message.user .message-content::before {
+    right: -16px;
+    border-left-color: var(--primary-color);
+}
+
+/* 输入区域 */
+.chat-input-area {
+    position: fixed; /* 改为 fixed 定位 */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #eee;
+    padding: 20px;
+    z-index: 100;
+    max-width: 100%; /* 确保不会超出屏幕宽度 */
+    margin: 0 auto;
+}
+
+.utility-buttons {
+    margin-bottom: 10px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.utility-buttons button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.utility-buttons button:hover {
+    background: #f0f0f0;
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 12px;
+    background: #F8F9FB;
+    border-radius: 8px;
+    padding: 8px;
+    align-items: flex-end;
+}
+
+.input-wrapper textarea {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px;
+    resize: none;
+    font-family: inherit;
+    font-size: 14px;
+    min-height: 24px;
+    max-height: 120px;
+    outline: none;
+    line-height: 1.5;
+}
+
+.send-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 24px;
+    height: 40px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.send-btn:hover {
+    background: #357ABD;
+}
+
+/* 打字动画 */
+.typing .message-content p {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 20px;
+}
+
+.typing .message-content p::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: currentColor;
+    border-radius: 50%;
+    animation: typing 1s infinite;
+}
+
+@keyframes typing {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .chat-container {
+        padding: 0 10px;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+    
+    .message-content {
+        padding: 12px 16px;
+    }
+}
+
+/* 历史记录面板 */
+.history-wrapper {
+    width: 50%;  /* 占总宽度的一半 */
+    min-width: 50%;
+    height: 100%;
+    background: white;
+    padding: 20px;
+}
+
+/* 显示历史记录时的状态 */
+.show-history .chat-wrapper {
+    transform: translateX(-50%);  /* 向左滑动一个屏幕宽度 */
+}
+
+.history-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.back-btn {
+    padding: 8px 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+}
+
+.back-btn:hover {
+    color: #333;
+}
+
+.history-header h3 {
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.history-content {
+    height: calc(100% - 60px);
+    overflow-y: auto;
+}
+
+.no-history {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+}
+
+/* Emoji 面板样式 */
+.emoji-panel {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 10px;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    width: 280px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.emoji-panel span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.emoji-panel span:hover {
+    background-color: #f0f0f0;
+}
+
+/* 调整表情按钮位置，确保面板定位正确 */
+.utility-buttons {
+    position: relative;
+}
+
+/* 美化滚动条 */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* 添加消息出现动画 */
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 确保最后一条消息完全可见 */
+.message:last-child {
+    margin-bottom: 20px; /* 给最后一条消息添加底部间距 */
+} 
