@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI对话 - AI对话平台</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/chat.css">
+</head>
+<body class="chat-page">
+    <header class="main-header">
+        <!-- 复用主页的header -->
+    </header>
+
+    <main class="chat-container">
+        <div class="chat-sidebar">
+            <div class="chat-history">
+                <h3>历史记录</h3>
+                <ul class="history-list">
+                    <li class="active">新对话</li>
+                    <li>上一次对话</li>
+                </ul>
+            </div>
+            <div class="chat-settings">
+                <h3>设置</h3>
+                <div class="settings-item">
+                    <label>语言选择</label>
+                    <select>
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-main">
+            <div class="chat-messages">
+                <div class="message ai">
+                    <div class="avatar">AI</div>
+                    <div class="message-content">
+                        <p>你好！我是你的AI助手，有什么我可以帮你的吗？</p>
+                    </div>
+                </div>
+                <!-- 用户消息示例 -->
+                <div class="message user">
+                    <div class="message-content">
+                        <p>你好！</p>
+                    </div>
+                    <div class="avatar">我</div>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <div class="utility-buttons">
+                    <button class="emoji-btn">😊</button>
+                    <button class="upload-btn">📎</button>
+                </div>
+                <div class="input-wrapper">
+                    <textarea placeholder="输入您的问题..." rows="1"></textarea>
+                    <button class="send-btn">发送</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 
